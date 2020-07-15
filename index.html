@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+	<title>ToDoList</title>
+    <link rel="stylesheet" type="text/css" href="stil.css"> 
+    <link href="https://fonts.googleapis.com/css?family=Rokkitt&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/1d32e6e74c.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+	<div class="main_content">
+		<h1>ToDoList</h1>
+		<div>
+			<input type="text" name="input" id="input_value" placeholder="What you need to do?">
+			<button onclick="addtask()">Add</button>
+		</div>		
+		<ul id="tasklist">			
+		</ul>		
+		<div class="filter">
+			<button onclick="showall()">Show all</button>
+			<button onclick="showactive()">Show active</button>
+			<button onclick="showdone()">Show done</button>
+		</div>	
+
+		<i class="fas fa-temperature-high" onclick="weather()"></i> 
+		<div id="weather"></div>
+
+		<button onclick="weather_fetch()">Fetch</button>
+		<div id="weather-fetch"></div>
+
+		<button onclick="proba()">Proba</button>
+
+		<table id="table">
+		</table>
+	</div>
+
+<script type="text/javascript" src="myScript.js"></script>
+<script type="text/javascript" src="test.json"></script>
+</body>
+</html>
