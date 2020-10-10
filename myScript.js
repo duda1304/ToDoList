@@ -176,60 +176,28 @@ function weatherFetch(position){
 				}
 			}
 		} else {
-		document.getElementById("weatherForecast").style.display = "block";
-		document.getElementById("location").innerHTML = data.city_name;
-		const day = new Date().getDay();
-		const tableData = document.getElementById("tableData");
-		let i;
-		let j = day;
-		for (i = 0; i < 3; i++) {
+			document.getElementById("weatherForecast").style.display = "block";
+			document.getElementById("location").innerHTML = data.city_name;
+			const day = new Date().getDay();
+			const tableData = document.getElementById("tableData");
+			let i;
+			let j = day;
+			for (i = 0; i < 3; i++) {
 
-			document.getElementById(i).innerHTML = weekDays[j];
-			
-			const td = document.createElement("td");
-			tableData.appendChild(td);
-			td.innerHTML = `${data.data[i].app_min_temp}°C-${data.data[i].app_max_temp}°C <br>
-													${data.data[i].weather.description}  <img src="icons/icons_${data.data[i].weather.icon}.png" style="width:35px"></img> <br>
-													Wind: ${data.data[i].wind_cdir_full}`
-			if (j === 6) {
-				j = 0;
-			} else {
-				j = j + 1;
+				document.getElementById(i).innerHTML = weekDays[j];
+
+				const td = document.createElement("td");
+				tableData.appendChild(td);
+				td.innerHTML = `${data.data[i].app_min_temp}°C-${data.data[i].app_max_temp}°C <br>
+														${data.data[i].weather.description}  <img src="icons/icons_${data.data[i].weather.icon}.png" style="width:35px"></img> <br>
+														Wind: ${data.data[i].wind_cdir_full}`
+				if (j === 6) {
+					j = 0;
+				} else {
+					j = j + 1;
+				}
 			}
 		}
-	}
 	});
 }
-
-
-// function proba() {
-// let mydata = JSON.parse(data);
-
-// let tr = document.createElement("tr");
-// document.getElementById("table").appendChild(tr);
-
-// Object.keys(mydata[0]).forEach(element => 
-
-// 		{let th = document.createElement("th");
-// 			th.innerHTML = element;
-// 			tr.appendChild(th);
-// 			}
-// 		);
-
-// mydata.forEach(element =>
-// 		{
-// 			let tr = document.createElement("tr");
-// 			document.getElementById("table").appendChild(tr);
-
-// 			Object.values(element).forEach(element => 
-
-// 				{let td = document.createElement("td");
-// 				 td.innerHTML = element;
-// 				 tr.appendChild(td);
-// 				}
-// 			);
-// 		}
-// 	);
-// }
-
 
