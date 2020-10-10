@@ -178,36 +178,3 @@ function weatherFetch(position){
 		}
 	});
 }
-
-
-// function proba() {
-// let mydata = JSON.parse(data);
-
-// let tr = document.createElement("tr");
-// document.getElementById("table").appendChild(tr);
-
-// Object.keys(mydata[0]).forEach(element => 
-
-// 		{let th = document.createElement("th");
-// 			th.innerHTML = element;
-// 			tr.appendChild(th);
-// 			}
-// 		);
-
-// mydata.forEach(element =>
-// 		{
-// 			let tr = document.createElement("tr");
-// 			document.getElementById("table").appendChild(tr);
-
-// 			Object.values(element).forEach(element => 
-
-// 				{let td = document.createElement("td");
-// 				 td.innerHTML = element;
-// 				 tr.appendChild(td);
-// 				}
-// 			);
-// 		}
-// 	);
-// }
-
-
