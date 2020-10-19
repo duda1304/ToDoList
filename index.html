@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+	<title>ToDoList</title>
+    <link rel="stylesheet" type="text/css" href="stil.css"> 
+	<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/1d32e6e74c.js" crossorigin="anonymous"></script>
+</head>
+
+<body class="d-flex justify-content-center align-items-center">
+	<div class="container mh-100">
+		<div class="row d-flex justify-content-center">
+			<div class="col-12">
+				<div class="main_content container d-flex flex-column align-items-center">
+					<h1 id="title">ToDoList</h1>
+					<div class="input-group m-3 col-md-6"> 
+						<input type="text" class="form-control" name="input" id="input_value" placeholder="What you need to do?">
+						<div class="input-group-append">
+							<button class="btn btn-outline-secondary" onclick="addtask()">Add</button>
+						</div>
+					</div>		
+					<!-- Task list -->
+					<div id="taskList" class="col-md-6 d-flex flex-column mt-3">
+						<p id="noTasks" style="display:none">No tasks in this category</p>
+					</div>
+					<!-- Done tasks list -->
+					<div id="doneTaskList" class="form-check checkbox-teal col-md-6 d-flex flex-column mb-3">			
+					</div>	
+					<!-- Categories -->
+					<div class="row mb-3 mt-3 w-100">
+						<div class="col-1 d-flex justify-content-end align-items-start p-0">
+								<div id="asideBar" ondrop="drop(event)" ondragover="allowDrop(event)" class="rotated text-center p-1" data-toggle="tooltip" data-placement="right" title="Drag and drop to delete">Delete category</div>
+						</div>
+						<div id="categories"  class="col-11 d-flex align-items-start justify-content-center flex-wrap">
+ 							<button onclick="displayCategory(event)" id="101101" class="btn btn-primary m-1" ondragover="allowDrop(event)" ondrop="dropTask(event)" contenteditable="true" draggable="true" ondragstart="drag(event)">Groceries</button>
+							<button onclick="displayCategory(event)" id="202202" class="btn btn-primary m-1" ondragover="allowDrop(event)" ondrop="dropTask(event)" contenteditable="true" draggable="true" ondragstart="drag(event)">Appointments</button>
+							<button onclick="displayCategory(event)" id="303303" class="btn btn-primary m-1 active" ondragover="allowDrop(event)" ondrop="dropTask(event)">Other</button>
+							<button id="addButton" class="btn btn-primary m-1" onclick="addButton()">+</button>
+						</div>
+					</div>	 
+				
+					<!-- Modal window -->
+					<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true" data-backdrop="static">
+						<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button id="cancel" type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								Do you want to delete also tasks that were under this category?
+							</div>
+							<div class="modal-footer">
+							<button id="yes" type="button" class="btn btn-secondary" data-dismiss="modal">Yes</button>
+							<button id="no" type="button" class="btn btn-primary" data-dismiss="modal">No</button>
+							</div>
+						</div>
+						</div>
+					</div>
+
+					<!-- Weather forecast -->
+					<button class="btn btn-outline-primary mb-4" onclick="getLocation()">Weather forecast</button>
+					<div id="weatherForecast" style = "display: none">
+						<p class="mb-1">Weather forecast for location: <span id="location"></span></p>
+						<div class="row justify-content-center">
+							<table class="table col-11 table-bordered">
+								<thead class="thead-dark">
+									<tr>
+										<th id="0" scope="col"></th>
+										<th id="1" scope="col"></th>
+										<th id="2" scope="col"></th>
+									<tr>
+								</thead>
+								<tbody>
+									<tr id="tableData">
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+
+
+					<!-- Horoscope -->
+					<button class="btn btn-outline-primary mb-4" onclick="getHoroscope()">Horoscope</button>
+					<div id="astrologyForecast" style = "display: none" class="col-md-6">
+						<p id="todayHoroscope" class="mb-1"></p>
+					</div>
+
+					<!-- Modal window -->
+					<div class="modal fade" id="modalAstrology" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true" data-backdrop="static">
+						<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modalAstrology-header col-12 mb-3 mt-3">
+								<h5 class="modal-title">What's your sign?</h5>
+							</div>
+							<div class="modalAstrology-body d-flex col-12 align-items-baseline justify-content-between flex-wrap mb-3">
+								<div class="mr-3">
+									<input type="radio" id="Aries" name="astro" value="Aries">
+									<label for="Aries">Aries</label>
+								</div>
+								<div class="mr-3">
+									<input type="radio" id="Taurus" name="astro" value="Taurus">
+									<label for="Taurus">Taurus</label>
+								</div>
+								<div class="mr-3">
+									<input type="radio" id="Gemini" name="astro" value="Gemini">
+									<label for="Gemini">Gemini</label>
+								</div>
+								<div class="mr-3">
+									<input type="radio" id="Cancer" name="astro" value="Cancer">
+									<label for="Cancer">Cancer</label>
+								</div>
+								<div class="mr-3">
+									<input type="radio" id="Leo" name="astro" value="Leo">
+									<label for="Leo">Leo</label>
+								</div>
+								<div class="mr-3">
+									<input type="radio" id="Virgo" name="astro" value="Virgo">
+									<label for="Virgo">Virgo</label>
+								</div>
+								<div class="mr-3">
+									<input type="radio" id="Libra" name="astro" value="Libra">
+									<label for="Libra">Libra</label>
+								</div>
+								<div class="mr-3">
+									<input type="radio" id="Scorpio" name="astro" value="Scorpio">
+									<label for="Scorpio">Scorpio</label>
+								</div>
+								<div class="mr-3">
+									<input type="radio" id="Sagittarius" name="astro" value="Sagittarius">
+									<label for="Sagittarius">Sagittarius</label>
+								</div>
+								<div class="mr-3">
+									<input type="radio" id="Capricorn" name="astro" value="Capricorn">
+									<label for="Capricorn">Capricorn</label>
+								</div>
+								<div class="mr-3">
+									<input type="radio" id="Aquarius" name="astro" value="Aquarius">
+									<label for="Aquarius">Aquarius</label>
+								</div>
+								<div class="mr-3">
+									<input type="radio" id="Pisces" name="astro" value="Pisces">
+									<label for="Pisces">Pisces</label>
+								</div>
+							</div>
+							<div class="modalAstrology-footer col-12 mb-3">
+								<button id="okAstro" type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
+								<button id="cancelAstro" type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+							</div>
+						</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<script type="text/javascript" src="myScript.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script>
+	$(document).ready(function(){
+	$('[data-toggle="tooltip"]').tooltip();   
+  });
+</script>
+</body>
+</html>
