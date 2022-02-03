@@ -92,7 +92,7 @@ $('#modal .modal-footer button, .modal-header span').on('click', function() {
 			element.setAttribute("class", "303303");
 		});
 		document.getElementById("303303").classList.add("active");
-		document.getElementById(category).remove();
+		document.getElementById("category").remove();
 	} 
   });
 } else {
