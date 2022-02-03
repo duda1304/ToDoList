@@ -96,7 +96,7 @@ $('#modal .modal-footer button, .modal-header span').on('click', function() {
 	} 
   });
 } else {
-	document.getElementById(category).remove();
+	document.getElementById("category").remove();
 	document.getElementById("noTasks").style.display = "none";
 }
 
